@@ -9,6 +9,7 @@ namespace fibonacci
     /// </summary>
     public static class FibonacciNumbers
     {
+        #region Public Methods
         /// <summary>
         /// Generate array of Fibonacci numbers.
         /// </summary>
@@ -26,7 +27,7 @@ namespace fibonacci
 
             return array;
         }
-
+        
         /// <summary>
         /// Generate array of Fibonacci numbers.
         /// </summary>
@@ -37,34 +38,52 @@ namespace fibonacci
             string[] array = new string[count];
             array[0] = "0";
             array[1] = "1";
-            int previousSurplus = 0, divider = 3;
+            int previousSurplus = 0, divisor = 1;
             for (int i = 2; i < count; i++)
             {
-                int[] firstArr = GetParts(array[i-1], divider);
-                int[] secondArr = GetParts(array[i-2], divider);
-                int[] currentNumber = new int[firstArr.Length];
-                
+                previousSurplus = 0;
+                int[] firstArr = GetParts(array[i - 1], divisor);
+                int[] secondArr = GetParts(array[i - 2], divisor);
+                List<int> currentNumber = new List<int>();
+
                 for (int j = firstArr.Length - 1; j >= 0; j--)
                 {
                     if (j == 0)
                     {
                         if (firstArr.Length > secondArr.Length)
                         {
-                            currentNumber[0] = firstArr[0] + previousSurplus;
+                            previousSurplus = CheckLength(firstArr[0] + previousSurplus, divisor, out int num);
+                            currentNumber.Add(num);
                         }
                         else
                         {
-                            currentNumber[0] = firstArr[0] + secondArr[0] + previousSurplus;
+                            previousSurplus = CheckLength(firstArr[0] + secondArr[0] + previousSurplus, divisor, out int num);
+                            currentNumber.Add(num);
                         }
                     }
                     else
                     {
-                        previousSurplus = CheckLength(firstArr[j] + secondArr[j - 1] + previousSurplus, divider, out currentNumber[j]);
+                        if (firstArr.Length > secondArr.Length)
+                        {
+                            previousSurplus = CheckLength(firstArr[j] + secondArr[j - 1] + previousSurplus, divisor, out int num);
+                            currentNumber.Add(num);
+                        }
+                        else
+                        {
+                            previousSurplus = CheckLength(firstArr[j] + secondArr[j] + previousSurplus, divisor, out int num);
+                            currentNumber.Add(num);
+                        }
                     }
                 }
 
+                if (previousSurplus > 0)
+                {
+                    currentNumber.Add(previousSurplus);
+                }
+
+                currentNumber.Reverse();
                 StringBuilder firstNumber = new StringBuilder();
-                for (int j = 0; j < currentNumber.Length; j++)
+                for (int j = 0; j < currentNumber.Count; j++)
                 {
                     firstNumber.Append(currentNumber[j]);
                 }
@@ -75,8 +94,16 @@ namespace fibonacci
 
             return array;
         }
+        #endregion
 
-        public static int[] GetParts(string number, int divider)
+        #region Private methods
+        /// <summary>
+        /// Returs divided by a divisor number.
+        /// </summary>
+        /// <param name="number">Number.</param>
+        /// <param name="divisor">Divisor.</param>
+        /// <returns>Returs divided by a divisor number.</returns>
+        private static int[] GetParts(string number, int divisor)
         {
             List<int> arr = new List<int>();
             int power = 1, count = 0, currentNumber = 0, index = number.Length - 1;
@@ -88,7 +115,7 @@ namespace fibonacci
                     arr.Reverse();
                     return arr.ToArray();
                 }
-                if (count >= divider)
+                if (count >= divisor)
                 {
                     arr.Add(currentNumber);
                     count = 0;
@@ -107,14 +134,21 @@ namespace fibonacci
             }
         }
 
-        public static int CheckLength(int number, int divider, out int currentNumber)
+        /// <summary>
+        /// Calculates surplus and the number in the divisor limit.
+        /// </summary>
+        /// <param name="number">Number.</param>
+        /// <param name="divisor">divisor.</param>
+        /// <param name="currentNumber">The number in the divisor limit.</param>
+        /// <returns>Surplus of the number in dependence of divisor.</returns>
+        private static int CheckLength(int number, int divisor, out int currentNumber)
         {
             int count = 0, power = 1;
             currentNumber = 0;
             while (number >= 1)
             {
                 count++;
-                if (count > divider)
+                if (count > divisor)
                 {
                     return number;
                 }
@@ -128,5 +162,6 @@ namespace fibonacci
 
             return 0;
         }
+        #endregion
     }
 }

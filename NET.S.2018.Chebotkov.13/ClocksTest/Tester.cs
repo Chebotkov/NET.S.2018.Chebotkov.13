@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace ClocksTest
 {
@@ -6,13 +7,13 @@ namespace ClocksTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Start");
-            Clocks.Timer timer = new Clocks.Timer();
-            timer.TimeIsOver += Write;
-            timer.TimeIsOver += Write2;
-            timer.Start(0, 0, 10);
-            timer.Start(0, 0, 5);
+            Clocks.Timer.Start(0, 0, 20, Write, Write3);
+            Clocks.Timer.Start(0, 0, 10, Write2);
 
+            Clocks.Timer.TimeIsOver += Write4;
+            Thread.Sleep(11000);
+            Clocks.Timer.Start(0, 0, 5);
+            Clocks.Timer.TimeIsOver -= Write;
         }
 
         public static void Write(string message)
@@ -23,6 +24,17 @@ namespace ClocksTest
         public static void Write2(string message)
         {
             Console.WriteLine(message + " in Write2.");
+        }
+
+        public static void Write3(string message)
+        {
+            Console.WriteLine(message + " in Write3.");
+        }
+
+
+        public static void Write4(string message)
+        {
+            Console.WriteLine(message + " in Write4.");
         }
     }
 }
