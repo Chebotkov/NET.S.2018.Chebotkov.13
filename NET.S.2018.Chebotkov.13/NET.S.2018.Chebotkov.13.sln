@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clocks", "Clocks\Clocks.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClocksTest", "ClocksTest\ClocksTest.csproj", "{6096E565-EE77-418F-8649-E231E14F59A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4", "Task4\Task4.csproj", "{2F8414D7-B7F7-493F-B456-E7DC6B548983}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4.Tests", "Task4.Tests\Task4.Tests.csproj", "{264D432D-2BA6-4495-968B-5458878055B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{6096E565-EE77-418F-8649-E231E14F59A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6096E565-EE77-418F-8649-E231E14F59A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6096E565-EE77-418F-8649-E231E14F59A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8414D7-B7F7-493F-B456-E7DC6B548983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8414D7-B7F7-493F-B456-E7DC6B548983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8414D7-B7F7-493F-B456-E7DC6B548983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8414D7-B7F7-493F-B456-E7DC6B548983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264D432D-2BA6-4495-968B-5458878055B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264D432D-2BA6-4495-968B-5458878055B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264D432D-2BA6-4495-968B-5458878055B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264D432D-2BA6-4495-968B-5458878055B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
